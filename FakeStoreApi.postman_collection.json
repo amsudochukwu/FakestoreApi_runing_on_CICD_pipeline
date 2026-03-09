@@ -1,0 +1,103 @@
+{
+  "info": {
+    "_postman_id": "e14dc5e9-96ed-4f32-9f2e-cdd9caaddbe5",
+    "name": "FakeStoreApi",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "53034164",
+    "_collection_link": "https://go.postman.co/collection/53034164-e14dc5e9-96ed-4f32-9f2e-cdd9caaddbe5?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "PRODUCTS",
+      "item": [
+        {
+          "name": "Get All Products",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://fakestoreapi.com/products",
+              "protocol": "https",
+              "host": [
+                "fakestoreapi",
+                "com"
+              ],
+              "path": [
+                "products"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "New Request",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 201\", function () {",
+                  "    pm.response.to.have.status(201);",
+                  "});",
+                  "",
+                  "pm.test(\"ID should return\", function () {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.expect(jsonData.id).to.eql(21);",
+                  "});",
+                  "",
+                  "pm.test(\"Category field should return\", function () {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.expect(jsonData.category).to.eql(\"Real Estate\");",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n\"id\": 21,\n\"title\": \"Apple West\",\n\"price\": 100.1,\n\"description\": \"Apple Estate\",\n\"category\": \"Real Estate\",\n\"image\": \"http://example.com\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://fakestoreapi.com/products",
+              "protocol": "https",
+              "host": [
+                "fakestoreapi",
+                "com"
+              ],
+              "path": [
+                "products"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}
